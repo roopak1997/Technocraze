@@ -14,6 +14,8 @@ web-application/.idea/*
 /fabric-network/config
 /fabric-network/.DS_Store
 /fabric-network/.project
+/fabric-network/chaincode/chaincode_example02/java/.idea
+/fabric-network/chaincode/chaincode_example02/java/.gradle/
 
 
 /network-explorer/explorer_1/scripts/bower_components/
