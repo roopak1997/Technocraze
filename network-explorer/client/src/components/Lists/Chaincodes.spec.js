@@ -12,36 +12,36 @@ jest.useFakeTimers();
 const setup = () => {
   const props = {
     classes: {
-      hash: 'hash',
+      hash: 'hash'
     },
     chaincodeList: [
       {
-        chaincodename: 'mycc',
-        channelName: 'mychannel',
+        chaincodename: 'clinicaltrials',
+        channelName: 'athena',
         path: '"github.com/chaincode/chaincode_example02/go/"',
         txCount: 33,
-        version: '1.0',
-      },
+        version: '1.0'
+      }
     ],
     channel: {
-      currentChannel: 'mychannel',
+      currentChannel: 'athena'
     },
     countHeader: {
       chaincodeCount: '1',
       latestBlock: 20,
       peerCount: '4',
-      txCount: '36',
+      txCount: '36'
     },
-    getChaincodes: jest.fn(),
+    getChaincodes: jest.fn()
   };
 
   const chaincode = {
-    chaincodename: 'mycc',
-    channelName: 'mychannel',
+    chaincodename: 'clinicaltrials',
+    channelName: 'athena',
     path: 'github.com/chaincode/chaincode_example02/go/',
     source: 'Location not found',
     txCount: 32,
-    version: '1.0',
+    version: '1.0'
   };
 
   const wrapper = mount(<Chaincodes {...props} />);
@@ -49,7 +49,7 @@ const setup = () => {
   return {
     chaincode,
     props,
-    wrapper,
+    wrapper
   };
 };
 
@@ -66,56 +66,58 @@ describe('Chaincodes', () => {
     expect(
       wrapper
         .find('TdComponent')
-        .findWhere(n => n.contains('mycc'))
-        .exists(),
+        .findWhere(n => n.contains('clinicaltrials'))
+        .exists()
     ).toBe(true);
     // Channel Name
     expect(
       wrapper
         .find('TdComponent')
-        .findWhere(n => n.contains('mychannel'))
-        .exists(),
+        .findWhere(n => n.contains('athena'))
+        .exists()
     ).toBe(true);
     // Path
     expect(
       wrapper
         .find('TdComponent')
-        .findWhere(n => n.contains('"github.com/chaincode/chaincode_example02/go/"'))
-        .exists(),
+        .findWhere(n =>
+          n.contains('"github.com/chaincode/chaincode_example02/go/"')
+        )
+        .exists()
     ).toBe(true);
     // Transition Count
     expect(
       wrapper
         .find('TdComponent')
         .findWhere(n => n.contains(33))
-        .exists(),
+        .exists()
     ).toBe(true);
     // Version
     expect(
       wrapper
         .find('TdComponent')
         .findWhere(n => n.contains('1.0'))
-        .exists(),
+        .exists()
     ).toBe(true);
   });
 
-  test('Simulate Chaincode Name filterMethod should have one result when given a value of mycc', () => {
+  test('Simulate Chaincode Name filterMethod should have one result when given a value of clinicaltrials', () => {
     const { wrapper } = setup();
     wrapper
       .find('ThComponent')
       .findWhere(n => n.key() === '0-chaincodename')
       .find('input')
-      .simulate('change', { target: { value: 'mycc' } });
+      .simulate('change', { target: { value: 'clinicaltrials' } });
     expect(wrapper.find(ReactTable).find('TrGroupComponent').length).toBe(1);
   });
 
-  test('Simulate Channel Name filterMethod should have one result when given a value of mychannel', () => {
+  test('Simulate Channel Name filterMethod should have one result when given a value of athena', () => {
     const { wrapper } = setup();
     wrapper
       .find('ThComponent')
       .findWhere(n => n.key() === '1-channelName')
       .find('input')
-      .simulate('change', { target: { value: 'mychannel' } });
+      .simulate('change', { target: { value: 'athena' } });
     expect(wrapper.find(ReactTable).find('TrGroupComponent').length).toBe(1);
   });
 
@@ -184,7 +186,7 @@ describe('Chaincodes', () => {
       chaincode,
       chaincode,
       chaincode,
-      chaincode,
+      chaincode
     ];
     expect(wrapper.find('.pagination-bottom').exists()).toBe(false);
     wrapper.setProps({ chaincodeList: chaincodes });

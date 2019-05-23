@@ -4,7 +4,7 @@
 
 const requtil = require('./requestutils');
 
-const platformroutes = async function (app, platform) {
+const platformroutes = async function(app, platform) {
   const proxy = platform.getProxy();
   const statusMetrics = platform.getPersistence().getMetricService();
   const crudService = platform.getPersistence().getCrudService();
@@ -19,7 +19,7 @@ const platformroutes = async function (app, platform) {
     const number = parseInt(req.params.number);
     const channel_genesis_hash = req.params.channel_genesis_hash;
     if (!isNaN(number) && channel_genesis_hash) {
-      proxy.getBlockByNumber(channel_genesis_hash, number).then((block) => {
+      proxy.getBlockByNumber(channel_genesis_hash, number).then(block => {
         res.send({
           status: 200,
           number: block.header.number.toString(),
@@ -41,14 +41,14 @@ const platformroutes = async function (app, platform) {
       {
       'channels': [
           {
-          'channel_id': 'mychannel'
+          'channel_id': 'athena'
           }
       ]
       }
       */
 
   app.get('/api/channels', (req, res) => {
-    proxy.getChannels().then((channels) => {
+    proxy.getChannels().then(channels => {
       const response = {
         status: 200
       };
@@ -63,7 +63,7 @@ const platformroutes = async function (app, platform) {
   curl -i 'http://<host>:<port>/api/curChannel'
   */
   app.get('/api/curChannel', (req, res) => {
-    proxy.getCurrentChannel().then((data) => {
+    proxy.getCurrentChannel().then(data => {
       res.send(data);
     });
   });
@@ -75,7 +75,7 @@ const platformroutes = async function (app, platform) {
   */
   app.get('/api/changeChannel/:channel_genesis_hash', (req, res) => {
     const channel_genesis_hash = req.params.channel_genesis_hash;
-    proxy.changeChannel(channel_genesis_hash).then((data) => {
+    proxy.changeChannel(channel_genesis_hash).then(data => {
       res.send({
         currentChannel: data
       });
@@ -154,8 +154,8 @@ const platformroutes = async function (app, platform) {
       Response:
       [
         {
-          'channelName': 'mychannel',
-          'chaincodename': 'mycc',
+          'channelName': 'athena',
+          'chaincodename': 'clinicaltrials',
           'path': 'github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02',
           'version': '1.0',
           'txCount': 0
@@ -166,7 +166,7 @@ const platformroutes = async function (app, platform) {
   app.get('/api/chaincode/:channel', (req, res) => {
     const channelName = req.params.channel;
     if (channelName) {
-      statusMetrics.getTxPerChaincode(channelName, async (data) => {
+      statusMetrics.getTxPerChaincode(channelName, async data => {
         for (const chaincode of data) {
           const temp = await proxy.loadChaincodeSrc(chaincode.path);
           chaincode.source = temp;
@@ -196,7 +196,7 @@ const platformroutes = async function (app, platform) {
   app.get('/api/peersStatus/:channel', (req, res) => {
     const channelName = req.params.channel;
     if (channelName) {
-      proxy.getPeersStatus(channelName).then((data) => {
+      proxy.getPeersStatus(channelName).then(data => {
         res.send({ status: 200, peers: data });
       });
     } else {

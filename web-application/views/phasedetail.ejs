@@ -43,12 +43,6 @@
         </div>
     </nav>
     <h1 style="margin-left:100px;margin-top:20px;margin-right:100px;color:rgb(255,255,255);"><%= phasedata %></h1>
-    <div>
-        <div class="row" style="margin-right:350px;margin-left:100px;margin-top:60px;">
-<!--            <div class="col"><a class="btn btn-primary btn-block" role="button" href="#">Export Report</a></div>-->
-            <div class="col"><a class="btn btn-primary btn-block" style="width: 120px" role="button" href="researchhome.ejs">Back</a></div>
-        </div>
-    </div>
     <hr style="color:rgb(0,0,0);background-color:#000000;height:4px;margin-top:30px;margin-bottom:30px;">
     <h1 class="text-center" style="color:rgb(255,255,255);">Timeline</h1>
 
@@ -115,15 +109,19 @@
         </table>
             <% if (logintype == "FDA") {%>
                 <div class="col" style="margin-left: 400px; margin-right: 400px ;margin-top:20px;">
-                    <button class="btn btn-primary btn-lg" type="reset" style="width:110px;">Reset</button>
-                    <button class="btn btn-primary btn-lg" type="submit" style="width:110px;margin-left:20px;">Approve</button>
+                    <a class="btn btn-primary btn-block" role="button" href="changephaseapi?phasedata=<%= phasedata %>" style="width: 120px">Approve</a>
                 </div>
             <% }%>
             <% if (logintype == "FDA") {%>
         </form>
         <% }%>
     </div>
-
+    <div>
+        <div class="row" style="margin-right:350px;margin-left:100px;margin-top:60px;">
+            <!--            <div class="col"><a class="btn btn-primary btn-block" role="button" href="#">Export Report</a></div>-->
+            <div class="col"><a class="btn btn-primary btn-block" style="width: 120px" role="button" href="researchhome.ejs">Back</a></div>
+        </div>
+    </div>
     <br>
     <br>
     <br>

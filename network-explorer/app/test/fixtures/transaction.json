@@ -2,12 +2,11 @@
   "status": 200,
   "row": {
     "id": 10,
-    "channelname": "mychannel",
+    "channelname": "athena",
     "blockid": 4,
-    "txhash":
-      "1752ce850935e0547e78b5396f64162a09c595f9ecc514f25afe48b52fa4d840",
+    "txhash": "1752ce850935e0547e78b5396f64162a09c595f9ecc514f25afe48b52fa4d840",
     "createdt": "2018-05-15T02:04:25.000Z",
-    "chaincodename": "mycc",
+    "chaincodename": "clinicaltrials",
     "status": 200,
     "creator_msp_id": "Org1MSP",
     "endorser_msp_id": "{\"Org1MSP\"}",
@@ -18,7 +17,7 @@
         "chaincode": "lscc",
         "set": [
           {
-            "key": "mycc",
+            "key": "clinicaltrials",
             "version": {
               "block_num": "3",
               "tx_num": "0"
@@ -27,7 +26,7 @@
         ]
       },
       {
-        "chaincode": "mycc",
+        "chaincode": "clinicaltrials",
         "set": [
           {
             "key": "a",
@@ -52,7 +51,7 @@
         "set": []
       },
       {
-        "chaincode": "mycc",
+        "chaincode": "clinicaltrials",
         "set": [
           {
             "key": "a",

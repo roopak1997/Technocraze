@@ -2,9 +2,9 @@
   "status": 200,
   "chaincode": [
     {
-      "channelName": "mychannel",
-      "chaincodename": "mycc",
-      "path": "github.com/chaincode/chaincode_example02/go/",
+      "channelName": "athena",
+      "chaincodename": "clinicaltrials",
+      "path": "/opt/gopath/src/github.com/chaincode/chaincode_example02/java/",
       "version": "1.0",
       "txCount": 17
     }

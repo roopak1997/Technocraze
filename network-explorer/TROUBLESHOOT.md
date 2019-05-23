@@ -439,8 +439,8 @@ Related Information:
 
     logs/app/app.log output:
 
-    [2018-10-26 10:20:35.233] [DEBUG] FabricClient - Channel genesis hash for channel [mychannel] >> ac4b7048da8b35c7b740babcb4dd8f911c94a15e45f442d5f6291a66f9b5ec5d
-    [2018-10-26 10:20:35.233] [DEBUG] FabricClient - Initialized channel >> mychannel
+    [2018-10-26 10:20:35.233] [DEBUG] FabricClient - Channel genesis hash for channel [athena] >> ac4b7048da8b35c7b740babcb4dd8f911c94a15e45f442d5f6291a66f9b5ec5d
+    [2018-10-26 10:20:35.233] [DEBUG] FabricClient - Initialized channel >> athena
     [2018-10-26 10:20:35.244] [DEBUG] FabricClient - Set client [cli] default orderer as  >> grpc://localhost:7050
     [2018-10-26 10:20:35.245] [DEBUG] FabricClient - Admin peer Not found for grpc://localhost:7051
 
@@ -491,7 +491,7 @@ Related Information:
     Use curl in docker to query explorer REST API
     Example:
     $curl http://localhost:8080/api/channels
-    Example response: {"status":200,"channels":["dockerchannel","mychannel"]
+    Example response: {"status":200,"channels":["dockerchannel","athena"]
 
 
 

@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import ExpansionPanel, {
   ExpansionPanelSummary,
-  ExpansionPanelDetails,
+  ExpansionPanelDetails
 } from '@material-ui/core/ExpansionPanel';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
@@ -18,20 +18,20 @@ import { FormControl, FormHelperText } from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import ChannelForm from '../Forms/ChannelForm';
 
-const styles = (theme) => {
+const styles = theme => {
   const { type } = theme.palette;
   const dark = type === 'dark';
   return {
     current: {
-      color: dark ? 'rgb(42, 173, 230)' : undefined,
+      color: dark ? 'rgb(42, 173, 230)' : undefined
     },
     panel: {
       color: dark ? '#ffffff' : undefined,
-      backgroundColor: dark ? '#3c3558' : undefined,
+      backgroundColor: dark ? '#3c3558' : undefined
     },
     channel: {
-      width: 200,
-    },
+      width: 200
+    }
   };
 };
 
@@ -43,9 +43,7 @@ class AdminPanel extends Component {
     return (
       <div className={classes.panel}>
         <Typography variant="headline" className={classes.panel}>
-          <FontAwesome name="cogs" className={classes.panel} />
-          {' '}
-ADMIN PANEL
+          <FontAwesome name="cogs" className={classes.panel} /> ADMIN PANEL
         </Typography>
         <ExpansionPanel className={classes.panel}>
           <ExpansionPanelSummary
@@ -53,13 +51,10 @@ ADMIN PANEL
             className={classes.panel}
           >
             <Typography variant="subheading" className={classes.panel}>
-              MANAGE CHANNEL
-              {' '}
+              MANAGE CHANNEL{' '}
             </Typography>
             <Typography variant="caption" className={classes.current}>
-              {this.props.channel.currentChannel}
-              {' '}
-              <br />
+              {this.props.channel.currentChannel} <br />
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className={classes.panel}>
@@ -74,19 +69,17 @@ ADMIN PANEL
                   helperText="select channel"
                   inputProps={{
                     name: 'age',
-                    id: 'age-simple',
+                    id: 'age-simple'
                   }}
                 >
                   <MenuItem value="" className={classes.panel}>
-                    <em>
-None
-                    </em>
+                    <em>None</em>
                   </MenuItem>
                   <MenuItem className={classes.panel} value={10}>
                     mock1
                   </MenuItem>
                   <MenuItem className={classes.panel} value={20}>
-                    mychannel
+                    athena
                   </MenuItem>
                   <MenuItem className={classes.panel} value={30}>
                     mock2
@@ -129,7 +122,7 @@ None
 function mapStateToProps(state, ownProps) {
   return {
     channelList: state.channelList.channelList,
-    channel: state.channel.channel,
+    channel: state.channel.channel
   };
 }
 // function mapDispatchToProps(dispatch){
@@ -138,5 +131,5 @@ function mapStateToProps(state, ownProps) {
 
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps /* ,mapDispatchToProps */),
+  connect(mapStateToProps /* ,mapDispatchToProps */)
 )(AdminPanel);

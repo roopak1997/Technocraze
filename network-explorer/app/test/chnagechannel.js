@@ -29,13 +29,13 @@ describe('GET /api/changeChannel/:channelName', () => {
     request.put.restore();
     request.delete.restore();
   });
-  it('should return currentchannel ', (done) => {
+  it('should return currentchannel ', done => {
     const obj = changechannel;
     this.get.yields(null, JSON.stringify(obj));
-    request.get(`${base}` + '/api/changechannel/mychannel', (err, body) => {
+    request.get(`${base}` + '/api/changechannel/athena', (err, body) => {
       body = JSON.parse(body);
       body.should.include.keys('currentChannel');
-      body.currentChannel.should.eql('mychannel');
+      body.currentChannel.should.eql('athena');
       done();
     });
   });

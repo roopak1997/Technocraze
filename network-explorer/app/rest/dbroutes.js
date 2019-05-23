@@ -12,7 +12,7 @@ const dbroutes = (app, platform) => {
   app.get('/api/status/:channel_genesis_hash', (req, res) => {
     const channel_genesis_hash = req.params.channel_genesis_hash;
     if (channel_genesis_hash) {
-      statusMetrics.getStatus(channel_genesis_hash, (data) => {
+      statusMetrics.getStatus(channel_genesis_hash, data => {
         if (data && (data.chaincodeCount && data.txCount && data.peerCount)) {
           return res.send(data);
         }
@@ -74,7 +74,7 @@ const dbroutes = (app, platform) => {
     const txid = req.params.txid;
     const channel_genesis_hash = req.params.channel_genesis_hash;
     if (txid && txid != '0' && channel_genesis_hash) {
-      crudService.getTransactionByID(channel_genesis_hash, txid).then((row) => {
+      crudService.getTransactionByID(channel_genesis_hash, txid).then(row => {
         if (row) {
           row.createdt = new Date(row.createdt).toISOString();
           return res.send({ status: 200, row });
@@ -88,7 +88,7 @@ const dbroutes = (app, platform) => {
   app.get('/api/blockActivity/:channel_genesis_hash', (req, res) => {
     const channel_genesis_hash = req.params.channel_genesis_hash;
     if (channel_genesis_hash) {
-      crudService.getBlockActivityList(channel_genesis_hash).then((row) => {
+      crudService.getBlockActivityList(channel_genesis_hash).then(row => {
         if (row) {
           return res.send({ status: 200, row });
         }
@@ -103,9 +103,9 @@ const dbroutes = (app, platform) => {
   GET /api/txList/
   curl -i 'http://<host>:<port>/api/txList/<channel_genesis_hash>/<blocknum>/<txid>/<limitrows>/<offset>'
   Response:
-  {'rows':[{'id':56,'channelname':'mychannel','blockid':24,
+  {'rows':[{'id':56,'channelname':'athena','blockid':24,
   'txhash':'c42c4346f44259628e70d52c672d6717d36971a383f18f83b118aaff7f4349b8',
-  'createdt':'2018-03-09T19:40:59.000Z','chaincodename':'mycc'}]}
+  'createdt':'2018-03-09T19:40:59.000Z','chaincodename':'clinicaltrials'}]}
   */
   app.get(
     '/api/txList/:channel_genesis_hash/:blocknum/:txid',
@@ -124,7 +124,7 @@ const dbroutes = (app, platform) => {
       if (channel_genesis_hash) {
         crudService
           .getTxList(channel_genesis_hash, blockNum, txid, from, to, orgs)
-          .then((rows) => {
+          .then(rows => {
             if (rows) {
               return res.send({ status: 200, rows });
             }
@@ -149,7 +149,7 @@ const dbroutes = (app, platform) => {
   app.get('/api/peers/:channel_genesis_hash', (req, res) => {
     const channel_genesis_hash = req.params.channel_genesis_hash;
     if (channel_genesis_hash) {
-      statusMetrics.getPeerList(channel_genesis_hash, (data) => {
+      statusMetrics.getPeerList(channel_genesis_hash, data => {
         res.send({ status: 200, peers: data });
       });
     } else {
@@ -163,7 +163,7 @@ const dbroutes = (app, platform) => {
   curl -i 'http://<host>:<port>/api/blockAndTxList/channel_genesis_hash/<blockNum>/<limitrows>/<offset>'
   Response:
   {'rows':[{'id':51,'blocknum':50,'datahash':'374cceda1c795e95fc31af8f137feec8ab6527b5d6c85017dd8088a456a68dee',
-  'prehash':'16e76ca38975df7a44d2668091e0d3f05758d6fbd0aab76af39f45ad48a9c295','channelname':'mychannel','txcount':1,
+  'prehash':'16e76ca38975df7a44d2668091e0d3f05758d6fbd0aab76af39f45ad48a9c295','channelname':'athena','txcount':1,
   'createdt':'2018-03-13T15:58:45.000Z','txhash':['6740fb70ed58d5f9c851550e092d08b5e7319b526b5980a984b16bd4934b87ac']}]}
   *
   */
@@ -181,7 +181,7 @@ const dbroutes = (app, platform) => {
       if (channel_genesis_hash && !isNaN(blockNum)) {
         crudService
           .getBlockAndTxList(channel_genesis_hash, blockNum, from, to, orgs)
-          .then((rows) => {
+          .then(rows => {
             if (rows) {
               return res.send({ status: 200, rows });
             }
@@ -210,7 +210,7 @@ const dbroutes = (app, platform) => {
     const hours = parseInt(req.params.hours);
 
     if (channel_genesis_hash && !isNaN(hours)) {
-      statusMetrics.getTxByMinute(channel_genesis_hash, hours).then((rows) => {
+      statusMetrics.getTxByMinute(channel_genesis_hash, hours).then(rows => {
         if (rows) {
           return res.send({ status: 200, rows });
         }
@@ -235,7 +235,7 @@ const dbroutes = (app, platform) => {
     const days = parseInt(req.params.days);
 
     if (channel_genesis_hash && !isNaN(days)) {
-      statusMetrics.getTxByHour(channel_genesis_hash, days).then((rows) => {
+      statusMetrics.getTxByHour(channel_genesis_hash, days).then(rows => {
         if (rows) {
           return res.send({ status: 200, rows });
         }
@@ -264,7 +264,7 @@ const dbroutes = (app, platform) => {
     if (channel_genesis_hash && !isNaN(hours)) {
       statusMetrics
         .getBlocksByMinute(channel_genesis_hash, hours)
-        .then((rows) => {
+        .then(rows => {
           if (rows) {
             return res.send({ status: 200, rows });
           }
@@ -289,7 +289,7 @@ const dbroutes = (app, platform) => {
     const days = parseInt(req.params.days);
 
     if (channel_genesis_hash && !isNaN(days)) {
-      statusMetrics.getBlocksByHour(channel_genesis_hash, days).then((rows) => {
+      statusMetrics.getBlocksByHour(channel_genesis_hash, days).then(rows => {
         if (rows) {
           return res.send({ status: 200, rows });
         }
@@ -327,7 +327,7 @@ const dbroutes = (app, platform) => {
            Response:
            [
              {
-               'channelName': 'mychannel',
+               'channelName': 'athena',
                'channel_hash': '',
                'craetedat': '1/1/2018'
              }
@@ -337,8 +337,8 @@ const dbroutes = (app, platform) => {
   app.get('/api/channels/info', (req, res) => {
     proxy
       .getChannelsInfo()
-      .then((data) => {
-        data.forEach((element) => {
+      .then(data => {
+        data.forEach(element => {
           element.createdat = new Date(element.createdat).toISOString();
         });
         res.send({ status: 200, channels: data });

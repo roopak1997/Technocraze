@@ -130,8 +130,10 @@ public class SimpleChaincode extends ChaincodeBase {
         stub.putStringState(args.get(0),record);
 
         String tasklist = stub.getStringState("tasklist");
-        tasklist = tasklist.concat( "," + args.get(0) );
-        stub.putStringState("tasklist",tasklist);
+        if(!tasklist.contains(args.get(0))) {
+            tasklist = tasklist.concat("," + args.get(0));
+            stub.putStringState("tasklist", tasklist);
+        }
 
         return newSuccessResponse("Record saved successfully : " + response + " for task : " + args.get(0),ByteString.copyFrom(record.toString(),UTF_8).toByteArray());
     }
@@ -189,7 +191,9 @@ public class SimpleChaincode extends ChaincodeBase {
 
     private Response report(ChaincodeStub stub, List<String> args){
 
-
+        if (args.size() != 8) {
+            return newErrorResponse("\nIncorrect number of arguments. Expecting 6 : \"organizationtype\", \"drugid\" , \"batchid\", \"batchexpected\" ,\"datereceived\" ,\"datedispatched\",\"filename\",\"filehash\" ");
+        }
 
         Calendar cal = Calendar.getInstance();
         String d = cal.getTime().toString();
@@ -215,8 +219,11 @@ public class SimpleChaincode extends ChaincodeBase {
         stub.putStringState(args.get(1),record);
 
         String drugslist = stub.getStringState("drugslist");
-        drugslist = drugslist.concat( "," + args.get(1) );
-        stub.putStringState("drugslist",drugslist);
+        
+	if(!drugslist.contains(args.get(1))) {
+            drugslist = drugslist.concat("," + args.get(1));
+            stub.putStringState("drugslist",drugslist);
+        }
 
         return newSuccessResponse("Track record saved successfully : " + response + " for drug : " + args.get(1),ByteString.copyFrom(record.toString(),UTF_8).toByteArray());
     }
