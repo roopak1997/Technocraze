@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechnocRAZe</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
+    <link rel="stylesheet" href="assets/css/Article-List.css">
+    <link rel="stylesheet" href="assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="assets/css/Header-Dark.css">
+    <link rel="stylesheet" href="assets/css/Highlight-Blue.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/css/Pretty-Footer.css">
+    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Team-Boxed.css">
+    <link rel="icon" href="assets/img/fav.png">
+</head>
+
+<body style="background-image:url(&quot;assets/img/IT_3.jpg&quot;);background-size:cover;background-repeat:no-repeat;">
+    <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search" style="background-color:rgba(0,0,0,0.5);padding:0px;">
+        <div class="container-fluid"><a class="navbar-brand" style="font-family:Cookie, cursive;font-size:36px;color:rgb(255,255,255);"><strong>Technoc</strong><span style="font-weight:bold;font-style:normal;color:rgb(83,131,211);">RAZ</span>e</a><button class="navbar-toggler" data-toggle="collapse"
+                data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="home.ejs" style="font-size:17px;font-weight:bold;color:rgb(255,255,255);">Home</a></li>
+                    <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" style="font-size:17px;color:rgb(255,255,255);"><strong>Product</strong>&nbsp;</a>
+                        <div class="dropdown-menu" role="menu" style="background-color:rgba(0,0,0,0.5);/*color:rgba(0,0,0,0);*/">
+                            <a class="dropdown-item" role="presentation" href="cthome.ejs" style="color:rgb(255,255,255);font-size:17px;"><strong>Clinical Trials</strong></a>
+                            <a class="dropdown-item" role="presentation" href="dtlogintype.ejs" style="color:rgb(255,255,255);font-size:17px;"><strong>Drug Traceabilty</strong></a>
+                        </div>
+                    </li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="about.ejs" style="font-size:17px;font-weight:bold;color:rgb(255,255,255);">About</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="contact.ejs" style="font-size:17px;font-weight:bold;color:rgb(255,255,255);">Contact Us</a></li>
+                    <% if(login != "" || dtlogin != "") { %>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="firstpage.ejs" style="font-size:17px;font-weight:bold;color:rgb(255,255,255);">Log Out</a></li>
+                    <%}%>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="jumbotron" style="margin: 30px; background-color: rgba(0,0,0,0.5);">
+        <h1 style="color: white; text-align: center; margin-top: -30px" >About</h1>
+        <br>
+        <br>
+        <p style="color: white;font-size: 18px">
+            Statistics as per a new analysis tells us that just one in twenty are healthy in any given year. This new analysis based on the “2013 Global Burden of Disease Study” finds that more than 95 per cent of the world’s population is ill. Alarmingly, over a third suffers from more than five chronic diseases and now as the world moves into technological advancements, it opens possibilities of discovering cures of diseases that were once meant to be incurable.
+        <br>
+        <br>
+            To do so we have the pharmaceutical companies continuously researching on the possibilities and conducting trials to monitor their progress. However the risky and unpredictable nature of the clinical trial process is a major driver of high costs for pharmaceutical drugs.
+        <br>
+        <br>
+            To justify the costs of drug development, most pharmaceutical companies aim to develop 2-3 new drugs per year, but the success rate and long development timelines with clinical trials diminish the chances of a successful product to nearly zero. This huge uncertainty translates into higher prices for everyone, from the investigator to the end consumer.
+            <br>
+            <br>
+            In addition to increased costs, today’s researchers face the challenges of accurately reproducing data, efficiently sharing data (including personal data), privacy concerns and patient enrolment strategies. Apart from this they would also be scenarios of companies manipulating the test trial results for the approval of their drug.
+            <br>
+            <br>
+
+            Hence we have made an attempt to permanently solve these problems by providing a secure open clinical documentation portal to the medical community and also provide a secure portal to trace high profile drugs from production to administration.
+
+        </p>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

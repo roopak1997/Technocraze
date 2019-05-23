@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechnocRAZe</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
+    <link rel="stylesheet" href="assets/css/Article-List.css">
+    <link rel="stylesheet" href="assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="assets/css/Header-Dark.css">
+    <link rel="stylesheet" href="assets/css/Highlight-Blue.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="assets/css/Pretty-Footer.css">
+    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Team-Boxed.css">
+    <link rel="icon" href="assets/img/fav.png">
+</head>
+
+<body style="background-image:url(&quot;assets/img/IT_3.jpg&quot;);background-size:cover;background-repeat:no-repeat;">
+<nav class="navbar navbar-dark navbar-expand-md navigation-clean-search" style="background-color:rgba(0,0,0,0.5);padding:0px;">
+    <div class="container-fluid"><a class="navbar-brand" style="font-family:Cookie, cursive;font-size:36px;color:rgb(255,255,255);"><strong>Technoc</strong><span style="font-weight:bold;font-style:normal;color:rgb(83,131,211);">RAZ</span>e</a><button class="navbar-toggler" data-toggle="collapse"
+                                                                                                                                                                                                                                                           data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item" role="presentation"><a class="nav-link" href="home.ejs" style="font-size:17px;font-weight:bold;color:rgb(255,255,255);">Home</a></li>
+                <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" style="font-size:17px;color:rgb(255,255,255);"><strong>Product</strong>&nbsp;</a>
+                    <div class="dropdown-menu" role="menu" style="background-color:rgba(0,0,0,0.5);/*color:rgba(0,0,0,0);*/">
+                        <a class="dropdown-item" role="presentation" href="cthome.ejs" style="color:rgb(255,255,255);font-size:17px;"><strong>Clinical Trials</strong></a>
+                        <a class="dropdown-item" role="presentation" href="dtlogintype.ejs" style="color:rgb(255,255,255);font-size:17px;"><strong>Drug Traceabilty</strong></a>
+                    </div>
+                </li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="about.ejs" style="font-size:17px;font-weight:bold;color:rgb(255,255,255);">About</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="contact.ejs" style="font-size:17px;font-weight:bold;color:rgb(255,255,255);">Contact Us</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="firstpage.ejs" style="font-size:17px;font-weight:bold;color:rgb(255,255,255);">Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1 style="margin-left:100px;margin-top:20px;margin-right:100px;color:rgb(255,255,255);"><%= phasedata %></h1>
+    <hr style="color:rgb(0,0,0);background-color:#000000;height:4px;margin-top:30px;margin-bottom:30px;">
+    <h1 class="text-center" style="color:rgb(255,255,255);">Timeline</h1>
+
+    <div class="jumbotron" style="  background-color: rgba(255,255,255,0.25); margin-left: 87px;margin-right: 87px">
+        <h2 style="color:white;">Clinical Trial Data</h2>
+        <% if (logintype == "FDA") {%>
+        <form action="changephaseapi">
+        <% }%>
+            <table style="color: white;text-align: center;margin-bottom: 30px; background-color: black;" border="5px solid black">
+                <tr>
+                    <th style="padding: 5px;">Task Id</th><th style="padding: 5px;">Report Id</th><th style="padding: 5px;">Date</th><th style="padding: 5px;">Employee Id</th><th style="padding: 5px;">File</th><th>Scenerio</th><th style="padding: 5px;">Summary</th>
+                    <% if (logintype == "FDA") {%>
+                        <th style="padding: 5px;">Approve</th>
+                    <% }%>
+                </tr>
+
+                <% for (var i = 0; i <dataObj.length;i++) {
+                    if(dataObj[i].v2.charAt(5) == phasedata.charAt(6) ){ %>
+                    <tr>
+                        <td style="padding: 5px;"><%= dataObj[i].v1%></td>
+                        <td style="padding: 5px;"><%= dataObj[i].v3%></td>
+                        <td style="padding: 5px;"><%= dataObj[i].v4%></td>
+                        <td style="padding: 5px;"><%= dataObj[i].v5%></td>
+                        <td style="padding: 5px;"><%= dataObj[i].v6%></td>
+                        <td style="padding: 5px;"><%= dataObj[i].v8%></td>
+                        <td style="padding: 5px;"><%= dataObj[i].v9%></td>
+                        <% if (logintype == "FDA") {%>
+                            <td style="padding: 5px;"><input type="checkbox" required=""></td>
+                        <% }%>
+                    </tr>
+                <% }} %>
+            </table>
+        <h2 style="color:white;">Reports</h2>
+        <table style="color: white;text-align: center; background-color: black;" border="5px solid black">
+            <tr>
+                <th style="padding: 5px;">Task Id</th><th style="padding: 5px;">Report Id</th><th style="padding: 5px;">File Name</th><th style="padding: 5px;">File Hash</th>
+            </tr>
+
+            <% for (var i = 0; i <dataObj.length;i++) {
+            if(dataObj[i].v2.charAt(5) == phasedata.charAt(6) ){ %>
+                <tr>
+                    <td style="padding: 5px;"><%= dataObj[i].v1%></td>
+                    <td style="padding: 5px;"><%= dataObj[i].v3%></td>
+                    <td style="padding: 5px;"><%= dataObj[i].v6%></td>
+                    <td style="padding: 5px;"><%= dataObj[i].v7%></td>
+                </tr>
+            <% }} %>
+        </table>
+        <h2 style="color:white;">Transaction Data</h2>
+        <table style="color: white;text-align: center; background-color: black; " border="5px solid black">
+            <tr>
+                <th style="padding: 5px;">Task Id</th><th style="padding: 5px;">Report Id</th><th style="padding: 5px;">Txn No.</th><th style="padding: 5px;">Time stamp</th>
+            </tr>
+
+            <% for (var i = 0; i <dataObj.length;i++) {
+            if(dataObj[i].v2.charAt(5) == phasedata.charAt(6) ){ %>
+                <tr>
+                    <td style="padding: 5px;"><%= dataObj[i].v1%></td>
+                    <td style="padding: 5px;"><%= dataObj[i].v3%></td>
+                    <td style="padding: 5px;"><%= dataObj[i].v10%></td>
+                    <td style="padding: 5px;"><%= dataObj[i].v11%></td>
+                </tr>
+            <% }} %>
+        </table>
+            <% if (logintype == "FDA") {%>
+                <div class="col" style="margin-left: 400px; margin-right: 400px ;margin-top:20px;">
+                    <a class="btn btn-primary btn-block" role="button" href="changephaseapi?phasedata=<%= phasedata %>" style="width: 120px">Approve</a>
+                </div>
+            <% }%>
+            <% if (logintype == "FDA") {%>
+        </form>
+        <% }%>
+    </div>
+    <div>
+        <div class="row" style="margin-right:350px;margin-left:100px;margin-top:60px;">
+            <!--            <div class="col"><a class="btn btn-primary btn-block" role="button" href="#">Export Report</a></div>-->
+            <div class="col"><a class="btn btn-primary btn-block" style="width: 120px" role="button" href="researchhome.ejs">Back</a></div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
